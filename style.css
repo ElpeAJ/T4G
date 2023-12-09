@@ -57,6 +57,9 @@ li {
   border: 1px solid grey;
   border-radius: 8px;
   margin-top: 30px;
+  width: 20vw;
+  height: 190px;
+  overflow: hidden;
 }
 
 .div:hover {
@@ -65,24 +68,30 @@ li {
 }
 
 .color {
-  width: 20vw;
+  width: 100%;
   height: 110px;
+  overflow: hidden;
 }
 
 .one {
   background-color: aqua;
+  width: 100%;
+  height: 110px;
 }
 
 .two {
   background-color: peru;
+  width: 100%;
 }
 
 .three {
   background-color: purple;
+  width: 100%;
 }
 
 .four {
   background-color: yellowgreen;
+  width: 100%;
 }
 
 .assess {
