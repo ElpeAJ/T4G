@@ -1,0 +1,99 @@
+* {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.nav {
+  background-color: #0c6309;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-family: Lucida handwriting;
+  padding: 10px 2px;
+  margin: 0px 4px;
+}
+
+.nav1 ul,
+.nav2 ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  width: 10vw;
+}
+
+.nav1 ul {
+  width: 250px;
+}
+
+.nav2 ul {
+  width: 150px;
+}
+
+li {
+  padding: 0px 4px;
+}
+
+.initials {
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 7px;
+}
+
+.question {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.container {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 5vh 5vw;
+}
+
+.div {
+  border: 1px solid grey;
+  border-radius: 8px;
+  margin-top: 30px;
+}
+
+.div:hover {
+  border: 2px dashed green;
+  cursor: pointer;
+}
+
+.color {
+  width: 20vw;
+  height: 110px;
+}
+
+.one {
+  background-color: aqua;
+}
+
+.two {
+  background-color: peru;
+}
+
+.three {
+  background-color: purple;
+}
+
+.four {
+  background-color: yellowgreen;
+}
+
+.assess {
+  margin: 7px 5px;
+  padding: 2px 0px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.percent {
+  margin: 7px 5px;
+  padding: 2px 0px;
+  color: lightseagreen;
+}
