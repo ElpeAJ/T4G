@@ -1,0 +1,12 @@
+.bulb{
+    text-align: center;
+    background-color: rgb(0, 0, 51);
+}
+
+.bulb img{
+    width: 500px;
+}
+
+.button{
+    text-align: center;
+}

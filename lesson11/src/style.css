@@ -1,0 +1,22 @@
+#topic{
+    font-size: 52px;
+    display: block;
+    margin: 0 auto;
+    border: 3px solid brown;
+    background-color: rgb(238, 120, 120);
+    cursor: pointer;
+}
+
+#explanations{
+    display: none;
+}
+
+#explanations p{
+    font-size: 23px;
+    text-shadow: 1px 1px 2px brown;
+}
+
+#explanations ul{
+    font-size: 21px;
+    text-shadow: 1px 1px 2px rgb(204, 87, 87);
+}

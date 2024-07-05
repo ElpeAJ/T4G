@@ -1,0 +1,29 @@
+
+
+/* styling for the navigation */
+
+nav{
+    background-color: antiquewhite;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li{
+    list-style: none;
+}
+
+/* styling for the homepage body */
+
+body{
+    background-color: aqua;
+}
+.home-heading{
+    background-color: red;
+}
+
+#home{
+    font-size: 45px;
+}
