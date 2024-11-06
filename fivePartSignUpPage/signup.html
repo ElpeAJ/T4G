@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link rel="stylesheet" href="font_face.css">
+    <script src="https://kit.fontawesome.com/acc40c9880.js" crossorigin="anonymous"></script>
+    <style>
+        /* *{
+            margin: 0;
+            padding: 0;
+        } */
+
+        .form-container{
+            width: 80vw;
+            margin: 50px auto;
+            padding: 40px 0 40px 100px;
+            border: 1px solid rgb(220, 219, 219);
+            border-radius: 8px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        .form-progress {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+
+        .step-indicator {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            background-color: #e1e1e1;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 30px;
+            font-size: 2.3rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .step-indicator.active {
+            background-color: green;
+        }
+
+        .line {
+            flex: 1;
+            height: 0.3rem;
+            background-color: #e1e1e1;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-step.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .form-step-title{
+            font-size: 2.5rem;
+        }
+
+        .basic-info{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .basic-info div{
+            margin-bottom: 2rem;
+        }
+
+        .basic-info label, .basic-info input{
+            display: block;
+        }
+
+        .basic-info label{
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .astericks{
+            color:red;
+            margin-left: 5px;
+        }
+
+        .basic-info input, .basic-info textarea{
+            width: 65%;
+            padding: 0.5rem 0.2rem;
+            font-size: 1rem;
+            color: black;
+            /* text-shadow: 2px 2px 5px rgb(103, 103, 103); */
+            background-color: #c5f9c5;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: 7px;
+        }
+
+        .form-navigation {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-content: flex-end;
+        }
+
+        /* .form-navigation button:nth-child(2) {
+            
+        } */
+
+        .form-navigation .form-nav-button{
+            display: block;
+        }
+
+        .form-nav-button {
+            padding: 10px 20px;
+            /* margin: 5px; */
+            border-radius: 7px;
+            border: none;
+            background-color: green;
+            color: white;
+            width: 20%;
+            font-size: 1rem;
+        }
+        
+        /* Codes for the dropdown */
+        .custom-dropdown {
+            position: relative;
+            width: 65%;
+        }
+
+        .custom-dropdown input {
+            width: 100%;
+            padding: 0.5rem 0.2rem;
+            font-size: 1rem;
+            color: black;
+            background-color: #c5f9c5;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .custom-dropdown-options {
+            position: absolute;
+            width: 100%;
+            max-height: 150px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .custom-dropdown-options div {
+            padding: 0.3rem 1rem;
+            cursor: pointer;
+            background-color: white;
+            margin: 0.2rem;
+        }
+
+        .custom-dropdown-options div:hover {
+            background-color: #c5f9c5;
+        }
+
+        .custom-dropdown.active .custom-dropdown-options {
+            display: block;
+        }
+
+        /* Multiple select styling (optional) */
+        .custom-dropdown.multi .custom-dropdown-options div.selected {
+            background-color: #c5f9c5;
+        }
+
+        /* Font Awesome dropdown icon styling */
+        .custom-dropdown .dropdown-icon {
+            position: absolute;
+            top: 75%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            transition: transform 0.3s ease; /* Smooth transition */
+        }
+
+        /* Rotate the icon when dropdown is active */
+        .custom-dropdown.active .dropdown-icon {
+            transform: translateY(-50%) rotate(180deg); /* Rotate to point upward */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-progress">
+            <div class="step-indicator active">1</div>
+            <div class="line"></div>
+            <div class="step-indicator">2</div>
+            <div class="line"></div>
+            <div class="step-indicator">3</div>
+            <div class="line"></div>
+            <div class="step-indicator">4</div>
+            <div class="line"></div>
+            <div class="step-indicator">5</div>
+        </div>
+        
+        <form action="" method="">
+            <div class="form-step active">
+                <h2 class="form-step-title">Basic Information</h2>
+                <div class="basic-info">
+                    <div>
+                        <label for="first-name">First Name <span class="astericks">*</span></label>
+                        <input type="text" id="first-name" name="first-name" required>
+                    </div>
+                    <div>
+                        <label for="last-name">Last Name <span class="astericks">*</span></label>
+                        <input type="text" id="last-name" name="last-name" required>
+                    </div>
+                    <div>
+                        <label for="email">Email <span class="astericks">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div>
+                        <label for="username">Username<span class="astericks">*</span></label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div>
+                        <label for="password">Password<span class="astericks">*</span></label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div>
+                        <label for="password">Confirm Password<span class="astericks">*</span></label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-step">
+                <h2 class="form-step-title">Professional Information</h2>
+                    <div class="basic-info">
+                        <div class="custom-dropdown" id="occupationDropdown">
+                            <label for="occupation">Occupation <span class="astericks">*</span></label>
+                            <input type="text" id="occupation" name="occupation" required readonly>
+                            <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+                            <div class="custom-dropdown-options">
+                                <div data-value="student">Student</div>
+                                <div data-value="developer">Developer</div>
+                                <div data-value="entrepreneur">Entrepreneur</div>
+                                <div data-value="tech-enthusiast">Tech Enthusiast</div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="company">Company / Organization <span class="astericks">*</span></label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="custom-dropdown" id="experienceDropdown">
+                            <label for="experience">Experience level <span class="astericks">*</span></label>
+                            <input type="text" id="experience" name="experience" required readonly>
+                            <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+                            <div class="custom-dropdown-options">
+                                <div data-value="beginner">Beginner</div>
+                                <div data-value="intermediate">Intermediate</div>
+                                <div data-value="expert">Expert</div>
+                            </div>
+                        </div>
+                        <div class="custom-dropdown" id="industryDropdown">
+                            <label for="industry">Industry<span class="astericks">*</span></label>
+                            <input type="text" id="industry" name="industry" required readonly>
+                            <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+                            <div class="custom-dropdown-options">
+                                <div data-value="it">IT</div>
+                                <div data-value="education">Education</div>
+                                <div data-value="health">Health</div>
+                                <div data-value="tech">Tech</div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="linkedin">LinkedIn Profile</label>
+                            <input type="text" id="linkedin" name="linkedin">
+                        </div>
+                    </div>
+            </div>
+
+            <div class="form-step">
+                <h2 class="form-step-title">Tech Interests and Skills</h2>
+                <div class="basic-info">
+                    <div class="custom-dropdown multi" id="interestDropdown">
+                        <label for="interest">Area of Interest <span class="astericks">*</span></label>
+                        <input type="text" id="interest" name="interest" required readonly>
+                        <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+                        <div class="custom-dropdown-options">
+                            <div data-value="web-development">Web Development</div>
+                            <div data-value="data-science">Data Science</div>
+                            <div data-value="cybersecurity">Cybersecurity</div>
+                            <div data-value="ai">AI</div>
+                            <div data-value="blockchain">Blockchain</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="skills">Skills<span class="astericks">*</span></label>
+                        <input type="text" id="skills" name="skills" required>
+                    </div>
+                    <div>
+                        <label for="tech-interests">What are you hoping to gain from joining this community?<span class="astericks">*</span></label>
+                        <textarea id="tech-interests" name="tech-interests" rows="7" cols="55"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-step">
+                <h2 class="form-step-title">Preferred Membership</h2>
+                <label for="membership-type">Select Membership Type</label><br>
+                <select id="membership-type" name="membership-type" required>
+                    <option value="basic">Basic</option>
+                    <option value="premium">Premium</option>
+                    <option value="pro">Pro</option>
+                </select>
+                <h1>Still in the works</h1>
+            </div>
+
+            <div class="form-step">
+                <h1 class="form-step-title">Still in the works!</h1>
+                
+            </div>
+
+            <div class="form-navigation">
+                <button class="form-nav-button" id="prev-btn" type="button" disabled>Previous</button>
+                <button class="form-nav-button" id="next-btn" type="button">Next</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- <script src="signup.js"></script> -->
+    <script src="updatesign.js"></script>
+</body>
+</html>
